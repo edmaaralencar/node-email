@@ -16,10 +16,9 @@ type SendMail = {
 export default class EtherealMailProvider {
   public parseEmailTemplate(file: string, variables: TemplateVariable) {
     const templateFileContent = fs.readFileSync(file).toString("utf-8");
-    const templateParse = handlebars.compile(templateFileContent);
-    const templateHTML = templateParse(variables);
+    const parseTemplate = handlebars.compile(templateFileContent);
 
-    return templateHTML;
+    return parseTemplate(variables);
   }
 
   async sendMail({ to, subject, variables, file }: SendMail) {
